@@ -2,9 +2,7 @@
 
 This package is a tool to ease the way of adding texts to language's `.json`
 
-## How to run it
-
-Install the package
+## Install
 
 `npm i -D pluto-i18n`
 
@@ -13,6 +11,8 @@ Add this script to your package.json
 `"pi18n": "node node_modules/pluto-i18n/index.js"`
 
 Then create a `.json` file for every language you want to add. Each one of them needs to have an object, doesn't matter if it's empty. You can locate these files wherever you prefer.
+
+## Usage
 
 ### By CLI
 
