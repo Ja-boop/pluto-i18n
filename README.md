@@ -43,7 +43,7 @@ Then you have to run ```npm run pi18n json```
     </tr>
         <tr>
         <td>remove</td>
-        <td>Remove a key</td>
+        <td>Remove a key. You don't need to put the text, only the key and the language_json_path</td>
     </tbody>
 </table>
 
