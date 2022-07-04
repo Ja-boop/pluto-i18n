@@ -11,7 +11,7 @@ function addText(path, key, text) {
   fs.readFile(languageJson, (e, data) => {
     if (e) throw e;
     const languageJSON = JSON.parse(data);
-    languageJSON[key] = text;
+    languageJSON[key.toUpperCase()] = text;
 
     const ordered = Object.keys(languageJSON)
       .sort()
@@ -56,7 +56,6 @@ function addFromJSON() {
 
 function addFromParams() {
   if (language && key && text) {
-    key.toUpperCase();
     addText(language, key, text);
   }
 }
