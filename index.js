@@ -2,7 +2,7 @@ const fs = require("fs");
 
 const firstParam = process.argv[2];
 const language = process.argv[3];
-const key = process.argv[4].toUpperCase();
+const key = process.argv[4];
 const text = process.argv[5];
 const paths = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
 
@@ -27,6 +27,7 @@ function addText(path, key, text) {
 
 function removeKey() {
   if (language && key) {
+    key.toUpperCase();
     const languageJson = paths[language] || language;
     fs.readFile(languageJson, (e, data) => {
       if (e) throw e;
@@ -55,6 +56,7 @@ function addFromJSON() {
 
 function addFromParams() {
   if (language && key && text) {
+    key.toUpperCase();
     addText(language, key, text);
   }
 }
