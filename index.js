@@ -12,11 +12,13 @@ function addText(path, key, text) {
 
     if (fs.existsSync("addTextPaths.json")) {
       pathsJson = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
+
+      if (fs.existsSync(pathsJson[language])) {
+        jsonPath = pathsJson[language];
+      }
     }
 
-    if (fs.existsSync(pathsJson[language])) {
-      jsonPath = pathsJson[language];
-    } else if (fs.existsSync(path)) {
+    if (fs.existsSync(path)) {
       jsonPath = path;
     } else if (fs.existsSync(language)) {
       jsonPath = language;
