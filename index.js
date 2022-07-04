@@ -32,7 +32,7 @@ function removeKey() {
     fs.readFile(languageJson, (e, data) => {
       if (e) throw e;
       const languageJSON = JSON.parse(data);
-      delete languageJSON[key];
+      delete languageJSON[key.toUpperCase()];
 
       const ordered = Object.keys(languageJSON)
         .sort()
