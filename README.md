@@ -1,27 +1,30 @@
 # pluto-i18n
-This package is a tool to ease the way of adding languages texts 
+
+This package is a tool to ease the way of adding texts to language's `.json`
+
 ## How to run it
+
 Install the package
 
-```npm i -D pluto-i18n```
+`npm i -D pluto-i18n`
 
 Add this script to your package.json
 
-```"pi18n": "node node_modules/pluto-i18n/index.js"```
+`"pi18n": "node node_modules/pluto-i18n/index.js"`
 
-Then create the jsons of the languages, wherever you want, they need to have at least an empty object
+Then create a `.json` file for every language you want to add. Each one of them needs to have an object, doesn't matter if it's empty. You can locate these files wherever you prefer.
 
 ### By CLI
 
-```npm run pi18n {action} {language_json_path} {key} {text}```
+`npm run pi18n {action} {language_json_path} {key} {text}`
 
 ### By JSON
 
-First you have to create an "addText.json" at the root folder, then it has to look like this
+First you have to create an "addText.json" at the root folder, it has to look like this
 
-```[{ "path": "language_json_path", "key": "key", "text": "text" }]```
+`[{ "path": "language_json_path", "key": "key", "text": "text" }]`
 
-Then you have to run ```npm run pi18n json```
+Then you have to run `npm run pi18n json`
 
 ## Actions
 
@@ -39,7 +42,7 @@ Then you have to run ```npm run pi18n json```
     </tr>
     <tr>
         <td>json</td>
-        <td>Add text by reading the addText Json </td>
+        <td>Add text by reading the addText.json</td>
     </tr>
         <tr>
         <td>remove</td>
@@ -48,6 +51,7 @@ Then you have to run ```npm run pi18n json```
 </table>
 
 ## Optional path shortener
+
 You can put an addTextPaths.json in the root folder to abbreviate the paths, this is useful when using the CLI, as you don't have to put the full path
 
 ```
@@ -60,12 +64,12 @@ You can put an addTextPaths.json in the root folder to abbreviate the paths, thi
 
 The you can do:
 
-```npm run pi18n add es hello hola``` 
+`npm run pi18n add es hello hola`
 
 or in the addText.json
 
 ```[
-      { "path": "es", "key": "hello", "text": "hola" 
+      { "path": "es", "key": "hello", "text": "hola"
       { "path": "en", "key": "hello", "text": "hello" }
    ]
 ```
