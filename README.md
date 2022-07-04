@@ -13,7 +13,7 @@ Then create the jsons of the languages, wherever you want, they need to have at 
 
 ### By CLI
 
-```npm run pi18n {action} {language json} {key} {text}```
+```npm run pi18n {action} {language_json_path} {key} {text}```
 
 ### By JSON
 
