@@ -24,8 +24,6 @@ function addText(path, key, text) {
       jsonPath = language;
     }
 
-    console.log(path);
-
     const languageJson = fs.readFileSync(jsonPath, {
       encoding: "utf8",
       flag: "r",
