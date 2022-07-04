@@ -62,7 +62,7 @@ You can put an addTextPaths.json in the root folder to abbreviate the paths, thi
 }
 ```
 
-The you can do:
+Then you can do:
 
 `npm run pi18n add es hello hola`
 
