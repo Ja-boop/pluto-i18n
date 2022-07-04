@@ -6,12 +6,6 @@ const key = process.argv[4];
 const text = process.argv[5];
 
 function addText(path, key, text) {
-  let paths;
-
-  if (fs.existsSync("addTextPaths.json")) {
-    paths = fs.readFileSync("addTextPaths.json", "utf-8");
-  }
-
   try {
     let jsonPath;
     let pathsJson;
