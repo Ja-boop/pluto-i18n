@@ -13,8 +13,8 @@ function addText(path, key, text) {
     if (fs.existsSync("addTextPaths.json")) {
       pathsJson = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
 
-      if (fs.existsSync(pathsJson[language])) {
-        jsonPath = pathsJson[language];
+      if (fs.existsSync(pathsJson[path])) {
+        jsonPath = pathsJson[path];
       }
     }
 
@@ -23,6 +23,8 @@ function addText(path, key, text) {
     } else if (fs.existsSync(language)) {
       jsonPath = language;
     }
+
+    console.log(path);
 
     const languageJson = fs.readFileSync(jsonPath, {
       encoding: "utf8",
