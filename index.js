@@ -4,46 +4,86 @@ const firstParam = process.argv[2];
 const language = process.argv[3];
 const key = process.argv[4];
 const text = process.argv[5];
-const paths = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
 
 function addText(path, key, text) {
-  const languageJson = paths[path] || language;
-  fs.readFile(languageJson, (e, data) => {
-    if (e) throw e;
-    const languageJSON = JSON.parse(data);
-    languageJSON[key.toUpperCase()] = text;
+  let paths;
 
-    const ordered = Object.keys(languageJSON)
+  if (fs.existsSync("addTextPaths.json")) {
+    paths = fs.readFileSync("addTextPaths.json", "utf-8");
+  }
+
+  try {
+    let jsonPath;
+    let pathsJson;
+
+    if (fs.existsSync("addTextPaths.json")) {
+      pathsJson = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
+    }
+
+    if (fs.existsSync(pathsJson[language])) {
+      jsonPath = pathsJson[language];
+    } else if (fs.existsSync(path)) {
+      jsonPath = path;
+    } else if (fs.existsSync(language)) {
+      jsonPath = language;
+    }
+
+    const languageJson = fs.readFileSync(jsonPath, {
+      encoding: "utf8",
+      flag: "r",
+    });
+    const parsedJson = JSON.parse(languageJson);
+
+    parsedJson[key.toUpperCase()] = text;
+    const ordered = Object.keys(parsedJson)
       .sort()
       .reduce((accumulator, key) => {
-        accumulator[key] = languageJSON[key];
+        accumulator[key] = parsedJson[key];
 
         return accumulator;
       }, {});
     const stringifyLanguage = JSON.stringify(ordered, null, 2);
-    fs.writeFileSync(languageJson, stringifyLanguage);
-  });
+    fs.writeFileSync(jsonPath, stringifyLanguage);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function removeKey() {
-  if (language && key) {
-    key.toUpperCase();
-    const languageJson = paths[language] || language;
-    fs.readFile(languageJson, (e, data) => {
-      if (e) throw e;
-      const languageJSON = JSON.parse(data);
-      delete languageJSON[key.toUpperCase()];
+  try {
+    if (language && key) {
+      let jsonPath;
+      let pathsJson;
 
-      const ordered = Object.keys(languageJSON)
+      if (fs.existsSync("addTextPaths.json")) {
+        pathsJson = JSON.parse(fs.readFileSync("addTextPaths.json", "utf-8"));
+      }
+
+      if (fs.existsSync(pathsJson[language])) {
+        jsonPath = pathsJson[language];
+      } else if (fs.existsSync(language)) {
+        jsonPath = language;
+      }
+
+      const languageJson = fs.readFileSync(jsonPath, {
+        encoding: "utf8",
+        flag: "r",
+      });
+      const parsedJson = JSON.parse(languageJson);
+
+      delete parsedJson[key.toUpperCase()];
+      const ordered = Object.keys(parsedJson)
         .sort()
         .reduce((accumulator, key) => {
-          accumulator[key] = languageJSON[key];
+          accumulator[key] = parsedJson[key];
 
           return accumulator;
         }, {});
       const stringifyLanguage = JSON.stringify(ordered, null, 2);
-      fs.writeFileSync(languageJson, stringifyLanguage);
-    });
+      fs.writeFileSync(jsonPath, stringifyLanguage);
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
