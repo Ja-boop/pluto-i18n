@@ -1,4 +1,5 @@
 const fs = require("fs");
+const os = require("os");
 
 const firstParam = process.argv[2];
 const language = process.argv[3];
@@ -39,7 +40,7 @@ function addText(path, key, text) {
         return accumulator;
       }, {});
     const stringifyLanguage = JSON.stringify(ordered, null, 2);
-    fs.writeFileSync(jsonPath, stringifyLanguage);
+    fs.writeFileSync(jsonPath, stringifyLanguage + os.EOL);
   } catch (e) {
     console.log(e);
   }
@@ -77,7 +78,7 @@ function removeKey() {
           return accumulator;
         }, {});
       const stringifyLanguage = JSON.stringify(ordered, null, 2);
-      fs.writeFileSync(jsonPath, stringifyLanguage);
+      fs.writeFileSync(jsonPath, stringifyLanguage + os.EOL);
     }
   } catch (error) {
     console.log(error);
