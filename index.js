@@ -39,7 +39,7 @@ function addText(path, key, text) {
 
         return accumulator;
       }, {});
-    const stringifyLanguage = JSON.stringify(ordered, null, 2);
+    const stringifyLanguage = JSON.stringify(ordered, null, 4);
     fs.writeFileSync(jsonPath, stringifyLanguage + os.EOL);
   } catch (e) {
     console.log(e);
@@ -77,7 +77,7 @@ function removeKey() {
 
           return accumulator;
         }, {});
-      const stringifyLanguage = JSON.stringify(ordered, null, 2);
+      const stringifyLanguage = JSON.stringify(ordered, null, 4);
       fs.writeFileSync(jsonPath, stringifyLanguage + os.EOL);
     }
   } catch (error) {
